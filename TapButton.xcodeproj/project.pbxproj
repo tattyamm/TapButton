@@ -21,6 +21,7 @@
 		AE850E39168EE9FF00D8F6B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E1A168EE9FE00D8F6B7 /* Foundation.framework */; };
 		AE850E41168EE9FF00D8F6B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE850E3F168EE9FF00D8F6B7 /* InfoPlist.strings */; };
 		AE850E44168EE9FF00D8F6B7 /* TapButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E43168EE9FF00D8F6B7 /* TapButtonTests.m */; };
+		AE850E4F168EED7D00D8F6B7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E4E168EED7D00D8F6B7 /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		AE850E40168EE9FF00D8F6B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE850E42168EE9FF00D8F6B7 /* TapButtonTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapButtonTests.h; sourceTree = "<group>"; };
 		AE850E43168EE9FF00D8F6B7 /* TapButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapButtonTests.m; sourceTree = "<group>"; };
+		AE850E4D168EED7D00D8F6B7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AE850E4E168EED7D00D8F6B7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 			children = (
 				AE850E27168EE9FE00D8F6B7 /* AppDelegate.h */,
 				AE850E28168EE9FE00D8F6B7 /* AppDelegate.m */,
+				AE850E4D168EED7D00D8F6B7 /* MainViewController.h */,
+				AE850E4E168EED7D00D8F6B7 /* MainViewController.m */,
 				AE850E1F168EE9FE00D8F6B7 /* Supporting Files */,
 			);
 			path = TapButton;
@@ -263,6 +268,7 @@
 			files = (
 				AE850E25168EE9FE00D8F6B7 /* main.m in Sources */,
 				AE850E29168EE9FE00D8F6B7 /* AppDelegate.m in Sources */,
+				AE850E4F168EED7D00D8F6B7 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +365,7 @@
 		AE850E48168EE9FF00D8F6B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapButton/TapButton-Prefix.pch";
 				INFOPLIST_FILE = "TapButton/TapButton-Info.plist";
@@ -370,6 +377,7 @@
 		AE850E49168EE9FF00D8F6B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapButton/TapButton-Prefix.pch";
 				INFOPLIST_FILE = "TapButton/TapButton-Info.plist";

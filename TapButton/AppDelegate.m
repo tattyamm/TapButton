@@ -6,17 +6,32 @@
 //  Copyright (c) 2012年 tattyamm. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @implementation AppDelegate
+@synthesize window = window_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+    //viewを作成
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    window_ = [[UIWindow alloc] initWithFrame:bounds];
+    
+    //そのviewをwindowに追加
+    MainViewController* mainView = [[[MainViewController alloc] init] autorelease];
+    mainViewController_ = [[UINavigationController alloc] initWithRootViewController:mainView];
+    
+    //これではだめ
+    //[window_ addSubview:mainViewController_.view];
+    //こうする(こうしないと回転しない)
+    self.window.rootViewController = mainViewController_;
+    
+    [window_ makeKeyAndVisible];
+    
+    
+    return 0;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -27,7 +42,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -44,6 +59,34 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+//回転対応
+/**
+ この辺りに対応しないと、iOS5でshouldAutorotateToInterfaceOrientationが読み取られない。
+ http://hiiro-game.seesaa.net/article/293374528.html
+ http://iphone-app-developer.seesaa.net/article/293717318.html
+ http://ken-plus.blogspot.jp/2012/09/ios6-uinavigationcontrollerautorotate.html
+ */
+//ios5
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+	return YES;
+}
+//ios6
+- (BOOL)shouldAutorotate {
+	return YES;
+}
+- (NSUInteger)supportedInterfaceOrientations {
+    //info.plistに書いた方が優先されるらしい
+	return UIInterfaceOrientationMaskAll;
+}
+
+
+
+- (void)dealloc {
+    [mainViewController_ release];
+    [window_ release];
+    [super dealloc];
 }
 
 @end
