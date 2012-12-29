@@ -7,27 +7,49 @@
 //
 
 #import "MainViewController.h"
+#import "AboutViewController.h"
+#import <QuartzCore/QuartzCore.h>   //UITextFieldの枠線や、UIButtonの背景色を設定するのに使った
 
-@interface MainViewController ()
-
-@end
 
 @implementation MainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+-(id)init{
+    self.title=NSLocalizedString(@"MainViewTitleText", nil);
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+- (void)viewDidLoad{
     
+    [super viewDidLoad];
+    
+    //navigationBar部分
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    //  iボタンを追加
+    //  http://d.hatena.ne.jp/chaoruko/20120203/1328236510
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [infoButton addTarget:self
+                   action:@selector(infoButtonDiDPushed)
+         forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    //  決定ボタンを追加（右上）
+    UIBarButtonItem *goButton = [[UIBarButtonItem alloc]
+                                 initWithTitle:NSLocalizedString(@"MainViewDoneButton", nil)
+                                 style:UIBarButtonItemStylePlain
+                                 target:self
+                                 action:@selector(goButtonDidPushKanpe)];
+    self.navigationItem.rightBarButtonItem = goButton;
+    //  戻るボタンの変更
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithImage:[UIImage imageNamed:@"arrow_left_24.png"]
+                                   style:UIBarButtonItemStyleBordered
+                                   target:nil
+                                   action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    
+    
+    
+    //画面サイズ取得
+    CGRect cgRectSize = [[UIScreen mainScreen] bounds]; //cgRectSize.size.widthで取得
     
     //ラベル
     UILabel* label = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
@@ -35,17 +57,38 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor blackColor];
     label.textColor = [UIColor whiteColor];
-    label.frame = CGRectMake(0,0,100,100);
+    label.frame = CGRectMake(0,0,cgRectSize.size.width,70);
     label.textAlignment = UITextAlignmentLeft;
     label.adjustsFontSizeToFitWidth = YES;
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:label];
+    
+
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
+//画面遷移
+- (void)goButtonDidPushKanpe {
+    //画面遷移
+    AboutViewController* kanpe = [[[AboutViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:kanpe animated:YES];
+}
+
+//画面遷移
+- (void)infoButtonDiDPushed {
+    AboutViewController* kanpe = [[[AboutViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:kanpe animated:YES];
+}
+
+
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [textView_ release];
+    [super dealloc];
 }
 
 @end
