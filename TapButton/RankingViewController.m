@@ -53,18 +53,14 @@
 // アクティビティインジケータ開始
 -(void)webViewDidStartLoad:(UIWebView*)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    //hud.dimBackground = YES;  //背景がいいかんじに暗くなる
 }
 
 // アクティビティインジケータ終了
 -(void)webViewDidFinishLoad:(UIWebView*)webView{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 
