@@ -50,20 +50,21 @@
 
 }
 
-// ページ読込開始時にインジケータをくるくるさせる
+// アクティビティインジケータ開始
 -(void)webViewDidStartLoad:(UIWebView*)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //hud.dimBackground = YES;  //背景がいいかんじに暗くなる
 }
 
-// ページ読込完了時にインジケータを非表示にする
+// アクティビティインジケータ終了
 -(void)webViewDidFinishLoad:(UIWebView*)webView{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD dismiss];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 

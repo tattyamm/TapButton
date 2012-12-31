@@ -26,9 +26,8 @@
 		AE850E62168F0D5E00D8F6B7 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E61168F0D5E00D8F6B7 /* AboutViewController.m */; };
 		AE850E64168F0D9900D8F6B7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E63168F0D9900D8F6B7 /* iAd.framework */; };
 		AE974CF71690534F0089D621 /* RankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CF61690534F0089D621 /* RankingViewController.m */; };
-		AE974CFD169187B10089D621 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE974CFA169187B10089D621 /* SVProgressHUD.bundle */; };
-		AE974CFE169187B10089D621 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CFC169187B10089D621 /* SVProgressHUD.m */; };
 		AE974D01169188380089D621 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE974CFF169188220089D621 /* QuartzCore.framework */; };
+		AE974D05169195A30089D621 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974D04169195A30089D621 /* MBProgressHUD.m */; };
 		AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */; };
 /* End PBXBuildFile section */
 
@@ -76,10 +75,9 @@
 		AE850E65168F0EC800D8F6B7 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AE974CF51690534F0089D621 /* RankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingViewController.h; sourceTree = "<group>"; };
 		AE974CF61690534F0089D621 /* RankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingViewController.m; sourceTree = "<group>"; };
-		AE974CFA169187B10089D621 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		AE974CFB169187B10089D621 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		AE974CFC169187B10089D621 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		AE974CFF169188220089D621 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AE974D03169195A30089D621 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		AE974D04169195A30089D621 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +150,7 @@
 				AE974CF51690534F0089D621 /* RankingViewController.h */,
 				AE974CF61690534F0089D621 /* RankingViewController.m */,
 				AE850E65168F0EC800D8F6B7 /* Const.h */,
-				AE974CF9169187B10089D621 /* SVProgressHUD */,
+				AE974D02169195A30089D621 /* MBProgressHUD */,
 				AE850E5C168F0C8D00D8F6B7 /* UICustomView */,
 				AE850E1F168EE9FE00D8F6B7 /* Supporting Files */,
 			);
@@ -202,14 +200,13 @@
 			name = UICustomView;
 			sourceTree = "<group>";
 		};
-		AE974CF9169187B10089D621 /* SVProgressHUD */ = {
+		AE974D02169195A30089D621 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				AE974CFA169187B10089D621 /* SVProgressHUD.bundle */,
-				AE974CFB169187B10089D621 /* SVProgressHUD.h */,
-				AE974CFC169187B10089D621 /* SVProgressHUD.m */,
+				AE974D03169195A30089D621 /* MBProgressHUD.h */,
+				AE974D04169195A30089D621 /* MBProgressHUD.m */,
 			);
-			path = SVProgressHUD;
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,7 +286,6 @@
 				AE850E2D168EE9FE00D8F6B7 /* Default@2x.png in Resources */,
 				AE850E2F168EE9FE00D8F6B7 /* Default-568h@2x.png in Resources */,
 				AE850E58168F0BAA00D8F6B7 /* Localizable.strings in Resources */,
-				AE974CFD169187B10089D621 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +326,7 @@
 				AE850E62168F0D5E00D8F6B7 /* AboutViewController.m in Sources */,
 				AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */,
 				AE974CF71690534F0089D621 /* RankingViewController.m in Sources */,
-				AE974CFE169187B10089D621 /* SVProgressHUD.m in Sources */,
+				AE974D05169195A30089D621 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
