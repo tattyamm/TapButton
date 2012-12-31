@@ -8,7 +8,6 @@
 
 #import "AboutViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "MyCustomButton.h"
 #import <iAd/iAd.h>
 
 #define BUTTON_HEIGHT 40 //ボタンの高さ

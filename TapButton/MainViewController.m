@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "AboutViewController.h"
+#import "RankingViewController.h"
 #import <QuartzCore/QuartzCore.h>   //UITextFieldの枠線や、UIButtonの背景色を設定するのに使った
 
 
@@ -70,8 +71,8 @@
 //画面遷移
 - (void)goButtonDidPushKanpe {
     //画面遷移
-    AboutViewController* kanpe = [[[AboutViewController alloc] init] autorelease];
-    [self.navigationController pushViewController:kanpe animated:YES];
+    RankingViewController* ranking = [[[RankingViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:ranking animated:YES];
 }
 
 //画面遷移

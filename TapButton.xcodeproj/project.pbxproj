@@ -25,6 +25,10 @@
 		AE850E58168F0BAA00D8F6B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE850E5A168F0BAA00D8F6B7 /* Localizable.strings */; };
 		AE850E62168F0D5E00D8F6B7 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E61168F0D5E00D8F6B7 /* AboutViewController.m */; };
 		AE850E64168F0D9900D8F6B7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E63168F0D9900D8F6B7 /* iAd.framework */; };
+		AE974CF71690534F0089D621 /* RankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CF61690534F0089D621 /* RankingViewController.m */; };
+		AE974CFD169187B10089D621 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE974CFA169187B10089D621 /* SVProgressHUD.bundle */; };
+		AE974CFE169187B10089D621 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CFC169187B10089D621 /* SVProgressHUD.m */; };
+		AE974D01169188380089D621 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE974CFF169188220089D621 /* QuartzCore.framework */; };
 		AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,12 @@
 		AE850E61168F0D5E00D8F6B7 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		AE850E63168F0D9900D8F6B7 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		AE850E65168F0EC800D8F6B7 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		AE974CF51690534F0089D621 /* RankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingViewController.h; sourceTree = "<group>"; };
+		AE974CF61690534F0089D621 /* RankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingViewController.m; sourceTree = "<group>"; };
+		AE974CFA169187B10089D621 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		AE974CFB169187B10089D621 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		AE974CFC169187B10089D621 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		AE974CFF169188220089D621 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE974D01169188380089D621 /* QuartzCore.framework in Frameworks */,
 				AE850E64168F0D9900D8F6B7 /* iAd.framework in Frameworks */,
 				AE850E19168EE9FE00D8F6B7 /* UIKit.framework in Frameworks */,
 				AE850E1B168EE9FE00D8F6B7 /* Foundation.framework in Frameworks */,
@@ -119,6 +130,7 @@
 		AE850E17168EE9FE00D8F6B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE974CFF169188220089D621 /* QuartzCore.framework */,
 				AE850E63168F0D9900D8F6B7 /* iAd.framework */,
 				AE850E18168EE9FE00D8F6B7 /* UIKit.framework */,
 				AE850E1A168EE9FE00D8F6B7 /* Foundation.framework */,
@@ -137,7 +149,10 @@
 				AE850E4E168EED7D00D8F6B7 /* MainViewController.m */,
 				AE850E60168F0D5E00D8F6B7 /* AboutViewController.h */,
 				AE850E61168F0D5E00D8F6B7 /* AboutViewController.m */,
+				AE974CF51690534F0089D621 /* RankingViewController.h */,
+				AE974CF61690534F0089D621 /* RankingViewController.m */,
 				AE850E65168F0EC800D8F6B7 /* Const.h */,
+				AE974CF9169187B10089D621 /* SVProgressHUD */,
 				AE850E5C168F0C8D00D8F6B7 /* UICustomView */,
 				AE850E1F168EE9FE00D8F6B7 /* Supporting Files */,
 			);
@@ -185,6 +200,16 @@
 				AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */,
 			);
 			name = UICustomView;
+			sourceTree = "<group>";
+		};
+		AE974CF9169187B10089D621 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				AE974CFA169187B10089D621 /* SVProgressHUD.bundle */,
+				AE974CFB169187B10089D621 /* SVProgressHUD.h */,
+				AE974CFC169187B10089D621 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +289,7 @@
 				AE850E2D168EE9FE00D8F6B7 /* Default@2x.png in Resources */,
 				AE850E2F168EE9FE00D8F6B7 /* Default-568h@2x.png in Resources */,
 				AE850E58168F0BAA00D8F6B7 /* Localizable.strings in Resources */,
+				AE974CFD169187B10089D621 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +329,8 @@
 				AE850E4F168EED7D00D8F6B7 /* MainViewController.m in Sources */,
 				AE850E62168F0D5E00D8F6B7 /* AboutViewController.m in Sources */,
 				AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */,
+				AE974CF71690534F0089D621 /* RankingViewController.m in Sources */,
+				AE974CFE169187B10089D621 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
