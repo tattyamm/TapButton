@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <iAd/iAd.h>
 
-#define BUTTON_HEIGHT 40 //ボタンの高さ
+
 
 @implementation AboutViewController
 @synthesize bannerIsVisible;

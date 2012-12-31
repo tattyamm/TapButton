@@ -2,7 +2,8 @@
     #define MyConst_h
 
     /* 定数 */
-    #define TWITTER_URL_TATTYAMM    @"https://twitter.com/tattyamm"
+    #define BUTTON_HEIGHT 40 //ボタンの高さ
+    #define TWITTER_URL_TATTYAMM    @"https://twitter.com/tattyamm" //作者のtwitter url
+    #define RANKING_TOP_URL         @"http://scoreserver.herokuapp.com/ranking/game01"  //rankingのviewで最初に開くページ
     //#define RANKING_TOP_URL         @"http://localhost:9000"
-    #define RANKING_TOP_URL         @"http://scoreserver.herokuapp.com/ranking/game01"
 #endif

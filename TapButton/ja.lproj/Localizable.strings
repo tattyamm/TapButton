@@ -1,5 +1,7 @@
 "MainViewTitleText" = "TapButton";
 "MainViewDoneButton" = "決定";
+"MainViewGoRankingButton" = "世界ランキング";
+"MainViewGoGameButton" = "スタート！";
 
 "AboutViewTitleText" = "説明";
 "AboutViewAboutText" = "ここに日本語で説明文を書くと、いい感じになります。\n\n・注意事項\nここに注意事項を書きます。\n\n\n\n・作者\nえんたつ(Entatsu)\nhttp://twitter.com/tattyamm";
