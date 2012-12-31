@@ -7,6 +7,7 @@
 //
 
 #import "RankingViewController.h"
+#import "SVProgressHUD.h"
 
 @interface RankingViewController ()
 
@@ -44,25 +45,45 @@
     wv.scalesPageToFit = NO;
     [self.view addSubview:wv];
     
-    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com/ranking/game01"];
+    NSURL *url = [NSURL URLWithString:RANKING_TOP_URL];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [wv loadRequest:req];
 
 }
 
-// アクティビティインジケータ開始
+
+
+
+/*
+// アクティビティインジケータ開始(view開始時)
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+*/
+// アクティビティインジケータ開始(web読み込み時)
 -(void)webViewDidStartLoad:(UIWebView*)webView{
+    [SVProgressHUD show];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 // アクティビティインジケータ終了
 -(void)webViewDidFinishLoad:(UIWebView*)webView{
+    [SVProgressHUD dismiss];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
+// 読み込みエラー処理
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"RankingViewWebErrorText", nil)];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -3,5 +3,6 @@
 
     /* 定数 */
     #define TWITTER_URL_TATTYAMM    @"https://twitter.com/tattyamm"
-
+    //#define RANKING_TOP_URL         @"http://localhost:9000"
+    #define RANKING_TOP_URL         @"http://scoreserver.herokuapp.com/ranking/game01"
 #endif

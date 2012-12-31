@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE5CE2111691F6230043CD46 /* arrow_left_24.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5CE2081691F6230043CD46 /* arrow_left_24.png */; };
+		AE5CE2121691F6230043CD46 /* arrow_left_48.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5CE2091691F6230043CD46 /* arrow_left_48.png */; };
+		AE5CE2131691F6230043CD46 /* arrow_left_64.png in Resources */ = {isa = PBXBuildFile; fileRef = AE5CE20A1691F6230043CD46 /* arrow_left_64.png */; };
 		AE850E19168EE9FE00D8F6B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E18168EE9FE00D8F6B7 /* UIKit.framework */; };
 		AE850E1B168EE9FE00D8F6B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E1A168EE9FE00D8F6B7 /* Foundation.framework */; };
 		AE850E1D168EE9FE00D8F6B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E1C168EE9FE00D8F6B7 /* CoreGraphics.framework */; };
@@ -27,6 +30,8 @@
 		AE850E64168F0D9900D8F6B7 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE850E63168F0D9900D8F6B7 /* iAd.framework */; };
 		AE974CF71690534F0089D621 /* RankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CF61690534F0089D621 /* RankingViewController.m */; };
 		AE974D01169188380089D621 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE974CFF169188220089D621 /* QuartzCore.framework */; };
+		AE9C5C0C1691C828000AAC43 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */; };
+		AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE5CE2081691F6230043CD46 /* arrow_left_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left_24.png; sourceTree = "<group>"; };
+		AE5CE2091691F6230043CD46 /* arrow_left_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left_48.png; sourceTree = "<group>"; };
+		AE5CE20A1691F6230043CD46 /* arrow_left_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left_64.png; sourceTree = "<group>"; };
 		AE850E14168EE9FE00D8F6B7 /* TapButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TapButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE850E18168EE9FE00D8F6B7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AE850E1A168EE9FE00D8F6B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +83,9 @@
 		AE974CF51690534F0089D621 /* RankingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingViewController.h; sourceTree = "<group>"; };
 		AE974CF61690534F0089D621 /* RankingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingViewController.m; sourceTree = "<group>"; };
 		AE974CFF169188220089D621 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		AE9C5C0A1691C828000AAC43 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +114,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE5CE2071691F6230043CD46 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				AE5CE2081691F6230043CD46 /* arrow_left_24.png */,
+				AE5CE2091691F6230043CD46 /* arrow_left_48.png */,
+				AE5CE20A1691F6230043CD46 /* arrow_left_64.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		AE850E09168EE9FE00D8F6B7 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +168,8 @@
 				AE974CF51690534F0089D621 /* RankingViewController.h */,
 				AE974CF61690534F0089D621 /* RankingViewController.m */,
 				AE850E65168F0EC800D8F6B7 /* Const.h */,
+				AE5CE2071691F6230043CD46 /* Images */,
+				AE9C5C081691C828000AAC43 /* SVProgressHUD */,
 				AE850E5C168F0C8D00D8F6B7 /* UICustomView */,
 				AE850E1F168EE9FE00D8F6B7 /* Supporting Files */,
 			);
@@ -194,6 +217,16 @@
 				AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */,
 			);
 			name = UICustomView;
+			sourceTree = "<group>";
+		};
+		AE9C5C081691C828000AAC43 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */,
+				AE9C5C0A1691C828000AAC43 /* SVProgressHUD.h */,
+				AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +306,10 @@
 				AE850E2D168EE9FE00D8F6B7 /* Default@2x.png in Resources */,
 				AE850E2F168EE9FE00D8F6B7 /* Default-568h@2x.png in Resources */,
 				AE850E58168F0BAA00D8F6B7 /* Localizable.strings in Resources */,
+				AE9C5C0C1691C828000AAC43 /* SVProgressHUD.bundle in Resources */,
+				AE5CE2111691F6230043CD46 /* arrow_left_24.png in Resources */,
+				AE5CE2121691F6230043CD46 /* arrow_left_48.png in Resources */,
+				AE5CE2131691F6230043CD46 /* arrow_left_64.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +350,7 @@
 				AE850E62168F0D5E00D8F6B7 /* AboutViewController.m in Sources */,
 				AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */,
 				AE974CF71690534F0089D621 /* RankingViewController.m in Sources */,
+				AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

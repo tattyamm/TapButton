@@ -6,4 +6,4 @@
 "AboutViewTwitterButton" = "作者のtwitterへ";
 "AboutViewBackButton" = "戻る";
 
-
+"RankingViewWebErrorText" = "データが取得できませんでした";
