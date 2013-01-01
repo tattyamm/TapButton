@@ -36,6 +36,21 @@
     [userDefaults setInteger:value forKey:SCORE_STRING_SAVE_KEY];
 }
 
+/**
+ * usernameのgetter,setter
+ */
++ (NSString *)usernameString {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:@{USERNAME_STRING_SAVE_KEY : NSLocalizedString(@"名前無し", nil)}];
+    return [userDefaults objectForKey:USERNAME_STRING_SAVE_KEY];
+}
++ (void)setUsernameString:(NSString *)value {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:value forKey:USERNAME_STRING_SAVE_KEY];
+}
+
+
+
 + (void)synchronize {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

@@ -95,11 +95,11 @@
     //http://iphone-dev.g.hatena.ne.jp/tokorom/20090520/1242789479
     
     //Debug 値の取り出し
-    NSLog( @"%d", [Configuration scoreString] );
+    //NSLog( @"%d", [Configuration scoreString] );
     //入力文字の保存
     [Configuration setScoreString: [Configuration scoreString]+1];
     //Debug もう１回値を取り出す
-    NSLog( @"%d", [Configuration scoreString] );
+    //NSLog( @"%d", [Configuration scoreString] );
     
     //Labelの更新
     scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];

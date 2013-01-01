@@ -8,4 +8,5 @@
     //#define RANKING_TOP_URL         @"http://localhost:9000"
 
     #define SCORE_STRING_SAVE_KEY   @"score_save_key"
+    #define USERNAME_STRING_SAVE_KEY @"username_save_key"
 #endif
