@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "RankingViewController.h"
 
 @interface GameViewController ()
 
@@ -27,6 +28,72 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    //viewの設定
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    //画面サイズ取得
+    CGRect cgRectSize = [[UIScreen mainScreen] applicationFrame];//ステータスバーを除いた画面サイズ
+    //NavigationBarの高さ取得
+    CGFloat navBarHeight  = self.navigationController.navigationBar.frame.size.height;
+
+    
+    //ボタン カウントするボタン
+    MyCustomButton *countButton = [[MyCustomButton alloc] init];
+    countButton.frame = CGRectMake(0 , cgRectSize.size.height-navBarHeight-BUTTON_HEIGHT*3
+                                       ,cgRectSize.size.width,BUTTON_HEIGHT);
+    [countButton setTitle:NSLocalizedString(@"GameViewCountButton", nil) forState:UIControlStateNormal];
+    [countButton addTarget:self
+                        action:@selector(countButtonDidPushed)
+              forControlEvents:UIControlEventTouchUpInside];
+    [countButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];
+    [self.view addSubview:countButton];
+    
+    //ボタン スコア登録
+    MyCustomButton *postScoreButton = [[MyCustomButton alloc] init];
+    postScoreButton.frame = CGRectMake(0 , cgRectSize.size.height-navBarHeight-BUTTON_HEIGHT*2
+                                       ,cgRectSize.size.width,BUTTON_HEIGHT);
+    [postScoreButton setTitle:NSLocalizedString(@"GameViewPostScoreButton", nil) forState:UIControlStateNormal];
+    [postScoreButton addTarget:self
+                        action:@selector(postScoreButtonDidPushed)
+              forControlEvents:UIControlEventTouchUpInside];
+    [postScoreButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];
+    [self.view addSubview:postScoreButton];
+    
+    //ボタン ランキング
+    MyCustomButton *goRankingButton = [[MyCustomButton alloc] init];
+    goRankingButton.frame = CGRectMake(0 , cgRectSize.size.height-navBarHeight-BUTTON_HEIGHT
+                                       ,cgRectSize.size.width,BUTTON_HEIGHT);
+    [goRankingButton setTitle:NSLocalizedString(@"GameViewGoRankingButton", nil) forState:UIControlStateNormal];
+    [goRankingButton addTarget:self
+                        action:@selector(goRankingButtonDidPushed)
+              forControlEvents:UIControlEventTouchUpInside];
+    [goRankingButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];
+    [self.view addSubview:goRankingButton];
+    
+}
+
+//カウントするボタン
+- (void)countButtonDidPushed {
+    NSLog(@"Pushed countButtonDidPushed.");
+}
+
+
+//スコア登録
+- (void)postScoreButtonDidPushed {
+    NSLog(@"Pushed postScoreButton.");
+    
+    //初回なら、名前を登録させる。
+    //２回目または名前を登録したら、スコアを送信する
+    //　成功なら順位を表示する
+    //　失敗なら失敗したというダイアログを表示する
+}
+
+
+//画面遷移
+- (void)goRankingButtonDidPushed {
+    RankingViewController* ranking = [[[RankingViewController alloc] init] autorelease];
+    [self.navigationController pushViewController:ranking animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,3 +9,7 @@
 "AboutViewBackButton" = "Back";
 
 "RankingViewWebErrorText" = "Cannot open page";
+
+"GameViewGoRankingButton" = "World Rankings";
+"GameViewPostScoreButton" = "Post Score";
+"GameViewCountButton" = "Push!!";

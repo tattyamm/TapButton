@@ -9,3 +9,8 @@
 "AboutViewBackButton" = "戻る";
 
 "RankingViewWebErrorText" = "データが取得できませんでした";
+
+"GameViewGoRankingButton" = "世界ランキング";
+"GameViewPostScoreButton" = "スコア登録";
+"GameViewCountButton" = "Push!!";
+
