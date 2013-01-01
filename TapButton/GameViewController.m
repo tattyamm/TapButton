@@ -14,6 +14,7 @@
 @end
 
 @implementation GameViewController
+@synthesize scoreLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,16 +39,16 @@
     CGFloat navBarHeight  = self.navigationController.navigationBar.frame.size.height;
 
     //ラベル
-    UILabel* label = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
-    label.text = @"ただいまのスコア：";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor blackColor];
-    label.textColor = [UIColor whiteColor];
-    label.frame = CGRectMake(0,0,cgRectSize.size.width,70);
-    label.textAlignment = UITextAlignmentLeft;
-    label.adjustsFontSizeToFitWidth = YES;
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:label];
+    scoreLabel = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
+    scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];
+    scoreLabel.textAlignment = NSTextAlignmentCenter;
+    scoreLabel.backgroundColor = [UIColor blackColor];
+    scoreLabel.textColor = [UIColor whiteColor];
+    scoreLabel.frame = CGRectMake(0,0,cgRectSize.size.width,70);
+    scoreLabel.textAlignment = UITextAlignmentLeft;
+    scoreLabel.adjustsFontSizeToFitWidth = YES;
+    scoreLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:scoreLabel];
 
     
     //ボタン カウントするボタン
@@ -93,14 +94,15 @@
     //これ、文字列を保存しちゃっているので、数字を保存するように変更する
     //http://iphone-dev.g.hatena.ne.jp/tokorom/20090520/1242789479
     
-    //値の取り出し
-    NSLog([Configuration scoreString]);
-    
+    //Debug 値の取り出し
+    NSLog( @"%d", [Configuration scoreString] );
     //入力文字の保存
-    [Configuration setScoreString:@"ここに保存する文字列"];
-
+    [Configuration setScoreString: [Configuration scoreString]+1];
     //Debug もう１回値を取り出す
-    NSLog([Configuration scoreString]);
+    NSLog( @"%d", [Configuration scoreString] );
+    
+    //Labelの更新
+    scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];
     
 }
 

@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Configuration : NSObject
-+ (NSString *)scoreString;
-+ (void)setScoreString:(NSString *)value;
++ (int)scoreString;
++ (void)setScoreString:(int)value;
 + (void)synchronize;
 @end

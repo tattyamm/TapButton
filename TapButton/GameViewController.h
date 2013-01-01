@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController
-
+@interface GameViewController : UIViewController{
+    UILabel *scoreLabel;
+}
+@property (nonatomic, retain) UILabel *scoreLabel;
 @end

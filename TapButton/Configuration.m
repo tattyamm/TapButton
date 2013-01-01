@@ -22,18 +22,18 @@
 /**
  * scoreStringのgetter.
  */
-+ (NSString *)scoreString {
++ (int)scoreString {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults registerDefaults:@{SCORE_STRING_SAVE_KEY : NSLocalizedString(@"0", nil)}];//デフォルト
-    return [userDefaults objectForKey:SCORE_STRING_SAVE_KEY];
+    [userDefaults registerDefaults:@{SCORE_STRING_SAVE_KEY : NSLocalizedString(0, nil)}];//デフォルト
+    return [userDefaults integerForKey:SCORE_STRING_SAVE_KEY];
 }
 
 /**
  * scoreStringのsetter.
  */
-+ (void)setScoreString:(NSString *)value {
++ (void)setScoreString:(int)value {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:value forKey:SCORE_STRING_SAVE_KEY];
+    [userDefaults setInteger:value forKey:SCORE_STRING_SAVE_KEY];
 }
 
 + (void)synchronize {
