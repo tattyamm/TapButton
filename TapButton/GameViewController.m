@@ -37,6 +37,18 @@
     //NavigationBarの高さ取得
     CGFloat navBarHeight  = self.navigationController.navigationBar.frame.size.height;
 
+    //ラベル
+    UILabel* label = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
+    label.text = @"ただいまのスコア：";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    label.frame = CGRectMake(0,0,cgRectSize.size.width,70);
+    label.textAlignment = UITextAlignmentLeft;
+    label.adjustsFontSizeToFitWidth = YES;
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:label];
+
     
     //ボタン カウントするボタン
     MyCustomButton *countButton = [[MyCustomButton alloc] init];
@@ -76,6 +88,20 @@
 //カウントするボタン
 - (void)countButtonDidPushed {
     NSLog(@"Pushed countButtonDidPushed.");
+    
+    //値を読み出し、+1して、値を戻し、表示を更新
+    //これ、文字列を保存しちゃっているので、数字を保存するように変更する
+    //http://iphone-dev.g.hatena.ne.jp/tokorom/20090520/1242789479
+    
+    //値の取り出し
+    NSLog([Configuration scoreString]);
+    
+    //入力文字の保存
+    [Configuration setScoreString:@"ここに保存する文字列"];
+
+    //Debug もう１回値を取り出す
+    NSLog([Configuration scoreString]);
+    
 }
 
 

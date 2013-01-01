@@ -6,4 +6,6 @@
     #define TWITTER_URL_TATTYAMM    @"https://twitter.com/tattyamm" //作者のtwitter url
     #define RANKING_TOP_URL         @"http://scoreserver.herokuapp.com/ranking/game01"  //rankingのviewで最初に開くページ
     //#define RANKING_TOP_URL         @"http://localhost:9000"
+
+    #define SCORE_STRING_SAVE_KEY   @"score_save_key"
 #endif
