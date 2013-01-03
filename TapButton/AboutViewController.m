@@ -40,7 +40,7 @@
     self.bannerIsVisible=NO;
     
     //説明文 スクロールする
-    UITextView* textView = [[[UITextView alloc] init] autorelease];
+    UITextView* textView = [[UITextView alloc] init];
     textView.frame = CGRectMake(0,0,cgRectSize.size.width,cgRectSize.size.height-navBarHeight-adView.frame.size.height);
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     textView.editable = NO; //編集不可にする

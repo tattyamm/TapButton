@@ -33,9 +33,9 @@
 		AE974CF71690534F0089D621 /* RankingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE974CF61690534F0089D621 /* RankingViewController.m */; };
 		AE974D01169188380089D621 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE974CFF169188220089D621 /* QuartzCore.framework */; };
 		AE9C5C0C1691C828000AAC43 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */; };
-		AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */; };
 		AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */; };
-		AECB2B1D169477F500081C8C /* STDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = AECB2B1C169477F500081C8C /* STDeferred.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AECB2B1D169477F500081C8C /* STDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = AECB2B1C169477F500081C8C /* STDeferred.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -494,7 +494,7 @@
 		AE850E48168EE9FF00D8F6B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapButton/TapButton-Prefix.pch";
 				INFOPLIST_FILE = "TapButton/TapButton-Info.plist";
@@ -507,7 +507,7 @@
 		AE850E49168EE9FF00D8F6B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TapButton/TapButton-Prefix.pch";
 				INFOPLIST_FILE = "TapButton/TapButton-Info.plist";

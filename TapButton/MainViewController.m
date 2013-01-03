@@ -59,7 +59,7 @@
     
     
     //ラベル
-    UILabel* label = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
+    UILabel* label = [[UILabel alloc] initWithFrame:self.view.bounds];
     label.text = @"表示する文字を入力して下さい";
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = [UIColor blackColor];
@@ -99,19 +99,19 @@
 
 //画面遷移
 - (void)goRankingButtonDidPushed {
-    RankingViewController* ranking = [[[RankingViewController alloc] init] autorelease];
+    RankingViewController* ranking = [[RankingViewController alloc] init];
     [self.navigationController pushViewController:ranking animated:YES];
 }
 
 //画面遷移
 - (void)goGameButtonDidPushed {
-    GameViewController* ranking = [[[GameViewController alloc] init] autorelease];
+    GameViewController* ranking = [[GameViewController alloc] init];
     [self.navigationController pushViewController:ranking animated:YES];
 }
 
 //画面遷移
 - (void)infoButtonDiDPushed {
-    AboutViewController* kanpe = [[[AboutViewController alloc] init] autorelease];
+    AboutViewController* kanpe = [[AboutViewController alloc] init];
     [self.navigationController pushViewController:kanpe animated:YES];
 }
 
@@ -122,8 +122,6 @@
 }
 
 - (void)dealloc {
-    [textView_ release];
-    [super dealloc];
 }
 
 @end

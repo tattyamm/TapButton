@@ -20,7 +20,7 @@
     window_ = [[UIWindow alloc] initWithFrame:bounds];
     
     //そのviewをwindowに追加
-    MainViewController* mainView = [[[MainViewController alloc] init] autorelease];
+    MainViewController* mainView = [[MainViewController alloc] init];
     mainViewController_ = [[UINavigationController alloc] initWithRootViewController:mainView];
     
     //これではだめ
@@ -84,9 +84,6 @@
 
 
 - (void)dealloc {
-    [mainViewController_ release];
-    [window_ release];
-    [super dealloc];
 }
 
 @end

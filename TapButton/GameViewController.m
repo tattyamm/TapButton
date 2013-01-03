@@ -41,7 +41,7 @@
     CGFloat navBarHeight  = self.navigationController.navigationBar.frame.size.height;
 
     //ラベル score
-    scoreLabel = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
+    scoreLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
     scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];
     scoreLabel.textAlignment = NSTextAlignmentCenter;
     scoreLabel.backgroundColor = [UIColor blackColor];
@@ -53,7 +53,7 @@
     [self.view addSubview:scoreLabel];
     
     //ラベル rank
-    rankLabel = [[[UILabel alloc] initWithFrame:self.view.bounds] autorelease];
+    rankLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
     rankLabel.text = [ NSString stringWithFormat : @"ランク：%@", [Configuration rankString]];
     rankLabel.textAlignment = NSTextAlignmentCenter;
     rankLabel.backgroundColor = [UIColor blackColor];
@@ -213,7 +213,7 @@
 
 //画面遷移
 - (void)goRankingButtonDidPushed {
-    RankingViewController* ranking = [[[RankingViewController alloc] init] autorelease];
+    RankingViewController* ranking = [[RankingViewController alloc] init];
     [self.navigationController pushViewController:ranking animated:YES];
 }
 
