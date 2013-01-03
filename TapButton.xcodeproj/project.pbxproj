@@ -35,6 +35,7 @@
 		AE9C5C0C1691C828000AAC43 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */; };
 		AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AEA5C48E168F2EA600D842EE /* MyCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AE850E5E168F0CC200D8F6B7 /* MyCustomButton.m */; };
+		AECB2B1D169477F500081C8C /* STDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = AECB2B1C169477F500081C8C /* STDeferred.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,9 @@
 		AE9C5C091691C828000AAC43 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		AE9C5C0A1691C828000AAC43 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		AECB2B1A169477F500081C8C /* STDeferred-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STDeferred-Prefix.pch"; sourceTree = "<group>"; };
+		AECB2B1B169477F500081C8C /* STDeferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDeferred.h; sourceTree = "<group>"; };
+		AECB2B1C169477F500081C8C /* STDeferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDeferred.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +191,7 @@
 				AE850E65168F0EC800D8F6B7 /* Const.h */,
 				AE5CE2221692B7750043CD46 /* Utility */,
 				AE5CE2071691F6230043CD46 /* Images */,
+				AECB2B19169477F500081C8C /* STDeferred */,
 				AE9C5C081691C828000AAC43 /* SVProgressHUD */,
 				AE850E5C168F0C8D00D8F6B7 /* UICustomView */,
 				AE850E1F168EE9FE00D8F6B7 /* Supporting Files */,
@@ -245,6 +250,16 @@
 				AE9C5C0B1691C828000AAC43 /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		AECB2B19169477F500081C8C /* STDeferred */ = {
+			isa = PBXGroup;
+			children = (
+				AECB2B1A169477F500081C8C /* STDeferred-Prefix.pch */,
+				AECB2B1B169477F500081C8C /* STDeferred.h */,
+				AECB2B1C169477F500081C8C /* STDeferred.m */,
+			);
+			path = STDeferred;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +386,7 @@
 				AE9C5C0D1691C828000AAC43 /* SVProgressHUD.m in Sources */,
 				AE5CE21D1691FEA50043CD46 /* GameViewController.m in Sources */,
 				AE5CE2251692B79F0043CD46 /* Configuration.m in Sources */,
+				AECB2B1D169477F500081C8C /* STDeferred.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

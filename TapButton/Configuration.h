@@ -20,5 +20,10 @@
 + (NSString *)usernameString;
 + (void)setUsernameString:(NSString *)value;
 
+
++ (NSString *)rankString;
++ (void)setRankString:(NSString *)value;
+
+
 + (void)synchronize;
 @end

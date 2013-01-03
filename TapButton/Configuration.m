@@ -49,6 +49,18 @@
     [userDefaults setObject:value forKey:USERNAME_STRING_SAVE_KEY];
 }
 
+/**
+ * rankのgetter,setter
+ */
++ (NSString *)rankString {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:@{RANK_STRING_SAVE_KEY : NSLocalizedString(@"ランキング未登録", nil)}];
+    return [userDefaults objectForKey:RANK_STRING_SAVE_KEY];
+}
++ (void)setRankString:(NSString *)value {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:value forKey:RANK_STRING_SAVE_KEY];
+}
 
 
 + (void)synchronize {

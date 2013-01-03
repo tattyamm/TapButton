@@ -10,6 +10,8 @@
 
 @interface GameViewController : UIViewController{
     UILabel *scoreLabel;
+    UILabel *rankLabel;
 }
 @property (nonatomic, retain) UILabel *scoreLabel;
+@property (nonatomic, retain) UILabel *rankLabel;
 @end
