@@ -38,15 +38,29 @@
 
 /**
  * usernameのgetter,setter
+ * 名前が空欄だった場合に、入力を求める仕様にする（名前未入力フラグとかは立てない）
  */
 + (NSString *)usernameString {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults registerDefaults:@{USERNAME_STRING_SAVE_KEY : NSLocalizedString(@"名前無し", nil)}];
+    [userDefaults registerDefaults:@{USERNAME_STRING_SAVE_KEY : NSLocalizedString(@"", nil)}];
     return [userDefaults objectForKey:USERNAME_STRING_SAVE_KEY];
 }
 + (void)setUsernameString:(NSString *)value {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:value forKey:USERNAME_STRING_SAVE_KEY];
+}
+
+/**
+ * uidのgetter,setter
+ */
++ (NSString *)uidString {
+    NSUserDefaults *uidDefaults = [NSUserDefaults standardUserDefaults];
+    [uidDefaults registerDefaults:@{UID_STRING_SAVE_KEY : NSLocalizedString(@"", nil)}];
+    return [uidDefaults objectForKey:UID_STRING_SAVE_KEY];
+}
++ (void)setUidString:(NSString *)value {
+    NSUserDefaults *uidDefaults = [NSUserDefaults standardUserDefaults];
+    [uidDefaults setObject:value forKey:UID_STRING_SAVE_KEY];
 }
 
 /**

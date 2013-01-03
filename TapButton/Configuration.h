@@ -20,6 +20,8 @@
 + (NSString *)usernameString;
 + (void)setUsernameString:(NSString *)value;
 
++ (NSString *)uidString;
++ (void)setUidString:(NSString *)value;
 
 + (NSString *)rankString;
 + (void)setRankString:(NSString *)value;

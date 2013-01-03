@@ -137,30 +137,29 @@
     //　成功なら順位を表示する
     //　失敗なら失敗したというダイアログを表示する
 
+    //名前が空なら登録を促す
+    if([Configuration usernameString] == @""){
+        NSLog(@"初回ユーザー登録");
+        
+        //[Configuration setUsernameString: @"入力内容"];
+    }
+    
+    //ユーザー登録済みなので、スコア送信
+    
 
 #warning 作成中
-    //GET
-    NSURL *url2 = [NSURL URLWithString:@"http://httpbin.org/ip"];
-    NSURLRequest *request2 = [NSURLRequest requestWithURL:url2];
-    
-    AFJSONRequestOperation *operation2 = [AFJSONRequestOperation JSONRequestOperationWithRequest:request2 success:^(NSURLRequest *request2, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"origin"]);
-    } failure:nil];
-    
-    //[operation2 start];
-    
     //POST
-    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com/"];
+    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             @"100", @"score",
                             @"e0365d12-3782-4c95-92bd-e2ad6b61e520", @"uid",
                             @"game01", @"gameId",
                             nil];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"score/register" parameters:params];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/score/register" parameters:params];
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"rank"]);
+        NSLog(@"Rank: %@", [JSON valueForKeyPath:@"rank"]);
     } failure:nil];
     
     [operation start];
