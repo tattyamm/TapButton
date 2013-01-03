@@ -12,6 +12,9 @@
    * [SVProgressHUD](https://github.com/samvermette/SVProgressHUD)
 * Deferred
    * [STDeferred](https://github.com/saiten/STDeferred)
+* 通信
+   * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+
 
 ##今後
 * 設定画面の追加

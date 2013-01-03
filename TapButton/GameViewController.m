@@ -9,6 +9,9 @@
 #import "GameViewController.h"
 #import "RankingViewController.h"
 #import "STDeferred.h"
+#import "AFURLConnectionOperation.h"
+#import "AFJSONRequestOperation.h"
+#import "AFHTTPClient.h"
 
 @interface GameViewController ()
 
@@ -136,80 +139,32 @@
 
 
 #warning 作成中
-    //テストでGETリクエストを送ってみる
-    NSString *urlString = @"http://scoreserver.herokuapp.com/user.json";
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //GET
+    NSURL *url2 = [NSURL URLWithString:@"http://httpbin.org/ip"];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:url2];
     
-    [[[self request:request] then:^(id responseData) {
-        // 成功時処理
-        NSLog(@"通信に成功 : %@" , [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] );
-    }] fail:^(id error) {
-        // 失敗時処理
-        NSLog(@"通信に失敗");
-    }];
+    AFJSONRequestOperation *operation2 = [AFJSONRequestOperation JSONRequestOperationWithRequest:request2 success:^(NSURLRequest *request2, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"origin"]);
+    } failure:nil];
     
-    //複数のメソッドをつなぐ
-    [[[[self request:request] pipe:^(id resultData) {
-        return [self request:request];
-    }] pipe:^(id resultData) {
-        return [self request:request];
-    }] fail:^(id error) {
-        // いずれかのrequestでエラーが発生した場合は中断してここに来る
-    }];
+    //[operation2 start];
     
+    //POST
+    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com/"];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"100", @"score",
+                            @"e0365d12-3782-4c95-92bd-e2ad6b61e520", @"uid",
+                            @"game01", @"gameId",
+                            nil];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"score/register" parameters:params];
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"rank"]);
+    } failure:nil];
     
-    /*
-    [self oldrequest:request completion:^(NSData *responseData) {
-        // 成功時処理
-        NSLog(@"通信に成功 : %@" , [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] );
-    } failure:^(NSError *error) {
-        // 失敗時処理
-        NSLog(@"通信に失敗");
-    }];
-     */
-    
+    [operation start];
 }
-
-
-
-//HTTPリクエスト（Deferred）
-- (STDeferred*)request:(NSURLRequest*)request
-{
-    STDeferred *deferred = [STDeferred deferred];
-    
-    dispatch_queue_t global_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(global_queue, ^{
-        NSURLResponse *response = nil;
-        NSError *error = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if(error) {
-            [deferred reject:error];
-        } else {
-            [deferred resolve:data];
-        }
-    });
-    
-    return deferred;
-}
-
-
-//HTTPリクエスト（一般的な方法）
-- (void)oldrequest:(NSURLRequest*)request completion:(void (^)(NSData*))completionBlock failure:(void (^)(NSError*))failureBlock
-{
-    dispatch_queue_t global_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(global_queue, ^{
-        NSURLResponse *response = nil;
-        NSError *error = nil;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if(error) {
-            failureBlock(error);
-        } else {
-            completionBlock(data);
-        }
-    });
-}
-
 
 //画面遷移
 - (void)goRankingButtonDidPushed {
