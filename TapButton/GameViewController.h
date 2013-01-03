@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GameViewController : UIViewController{
+@interface GameViewController : UIViewController <UITextFieldDelegate>{
     UILabel *scoreLabel;
     UILabel *rankLabel;
+    
+     UIButton *button;
+    UITextField *textField;
 }
 @property (nonatomic, retain) UILabel *scoreLabel;
 @property (nonatomic, retain) UILabel *rankLabel;

@@ -137,32 +137,111 @@
     //　成功なら順位を表示する
     //　失敗なら失敗したというダイアログを表示する
 
+#warning 作成中
     //名前が空なら登録を促す
     if([Configuration usernameString] == @""){
         NSLog(@"初回ユーザー登録");
-        
-        //[Configuration setUsernameString: @"入力内容"];
+        [self showAlertView];
+    }else{
+        //ユーザー登録済みなので、スコア送信
+        NSLog(@"スコア送信");
+        [self postScore:[Configuration scoreString] uid:@"e0365d12-3782-4c95-92bd-e2ad6b61e520" gameId:@"game01"];
     }
-    
-    //ユーザー登録済みなので、スコア送信
-    
 
-#warning 作成中
-    //POST
+}
+
+//ユーザー登録
+-(void) registerUserWithScreenname:(NSString *)screenname {
+    //TODO ユーザー登録が完了したら、必ずスコアも登録する仕様にしちゃう。
+    
+    
     NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            @"100", @"score",
-                            @"e0365d12-3782-4c95-92bd-e2ad6b61e520", @"uid",
-                            @"game01", @"gameId",
+                            screenname, @"screenName",
                             nil];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/score/register" parameters:params];
-
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/user/register" parameters:params];
+    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"Rank: %@", [JSON valueForKeyPath:@"rank"]);
+        NSLog(@"uid: %@", [JSON valueForKeyPath:@"uid"]);
+        [Configuration setUidString:[JSON valueForKeyPath:@"uid"]];
+        
+        //スコア登録の呼び出し
+        [self postScore:[Configuration scoreString] uid:[JSON valueForKeyPath:@"uid"]gameId:@"game01"];
+        
     } failure:nil];
     
     [operation start];
+}
+
+//Score登録 POST
+-(void) postScore:(int)score uid:(NSString *)uid gameId:(NSString *)gameId{
+    
+    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [ NSString stringWithFormat : @"%d", score ], @"score",
+                            uid, @"uid",
+                            gameId, @"gameId",
+                            nil];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/score/register" parameters:params];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Rank: %@", [JSON valueForKeyPath:@"rank"]);
+        rankLabel.text = [ NSString stringWithFormat : @"ランク：%@", [JSON valueForKeyPath:@"rank"]];
+        [Configuration setRankString:[JSON valueForKeyPath:@"rank"]];
+    } failure:nil];
+    
+    [operation start];
+}
+
+
+
+//AlertView表示
+- (void)showAlertView{
+    // UIAlertViewの生成
+    //   http://www.amuate.com/2012/04/07/alertviewandtextfield.html
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"名前を入力して下さい"
+                                                        message:@" "
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+    // UITextFieldの生成
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 45, 260, 25)];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.textAlignment = UITextAlignmentLeft;
+    textField.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
+    textField.textColor = [UIColor grayColor];
+    textField.minimumFontSize = 8;
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.delegate = self;
+    textField.text = button.titleLabel.text;
+    [alertView addSubview:textField];
+    // アラート表示
+    [alertView show];
+    // テキストフィールドをファーストレスポンダに
+    [textField becomeFirstResponder];
+}
+
+//AlertViewのテキスト入力内容を受け取る
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // OKが選択された場合
+    if (buttonIndex == 1) {
+        // テキストフィールドに一文字以上入力されていれば
+        if ([textField.text length]) {
+            // ボタンタイトルにテキストフィールドのテキストを設定
+            NSLog(@"AlertView入力内容 %@",textField.text);
+            [Configuration setUsernameString: textField.text];
+
+            //ユーザー登録
+            [self registerUserWithScreenname:textField.text];
+            
+        }else{
+            //空のままOKボタン押されたら、再度ダイアログ表示
+            [self showAlertView];
+        }
+    }
 }
 
 //画面遷移
