@@ -45,7 +45,7 @@
 
     //ラベル score
     scoreLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
-    scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];
+    scoreLabel.text = [ NSString stringWithFormat : @"%@%d",NSLocalizedString(@"GameViewScoreLabel", nil) , [Configuration scoreString]];
     scoreLabel.textAlignment = NSTextAlignmentCenter;
     scoreLabel.backgroundColor = [UIColor blackColor];
     scoreLabel.textColor = [UIColor whiteColor];
@@ -57,11 +57,11 @@
     
     //ラベル rank
     rankLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
-    rankLabel.text = [ NSString stringWithFormat : @"ランク：%@", [Configuration rankString]];
+    rankLabel.text = [ NSString stringWithFormat : @"%@%@",NSLocalizedString(@"GameViewRankLabel", nil), [Configuration rankString]];
     rankLabel.textAlignment = NSTextAlignmentCenter;
     rankLabel.backgroundColor = [UIColor blackColor];
     rankLabel.textColor = [UIColor whiteColor];
-    rankLabel.frame = CGRectMake(0,100,cgRectSize.size.width,70);
+    rankLabel.frame = CGRectMake(0,30,cgRectSize.size.width,70);
     rankLabel.textAlignment = UITextAlignmentLeft;
     rankLabel.adjustsFontSizeToFitWidth = YES;
     rankLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -119,7 +119,7 @@
     //NSLog( @"%d", [Configuration scoreString] );
     
     //Labelの更新
-    scoreLabel.text = [ NSString stringWithFormat : @"スコア：%d", [Configuration scoreString]];
+    scoreLabel.text = [ NSString stringWithFormat : @"%@%d",NSLocalizedString(@"GameViewScoreLabel", nil), [Configuration scoreString]];
     
 }
 
@@ -129,15 +129,11 @@
     NSLog(@"Pushed postScoreButton.");
     
     //初回なら、名前を登録させる。（ここの判定用にフラグが必要かも）
-    //　登録
-    //　　名前、UID、rank、を保存する
-    //   TODO 国も送りたい NSString *language = NSLocalizedString(@"Language", nil);
-    //   TODO 送信時はボタンを無効化し、くるくる動かす
+    //　サーバーに名前を登録し、必要な値を保存
     //２回目または名前を登録済みだったら、スコアを送信する
     //　成功なら順位を表示する
     //　失敗なら失敗したというダイアログを表示する
 
-#warning 作成中
     //名前が空なら登録を促す
     if([Configuration usernameString] == @""){
         NSLog(@"初回ユーザー登録");
@@ -146,7 +142,7 @@
         //ユーザー登録済みなので、スコア送信
         NSLog(@"userName:%@ uid:%@",[Configuration usernameString],[Configuration uidString]);
         NSLog(@"スコア送信");
-        [self postScore:[Configuration scoreString] uid:[Configuration uidString] gameId:@"game01"];
+        [self postScore:[Configuration scoreString] uid:[Configuration uidString] gameId:GAME_ID];
     }
 
 }
@@ -154,22 +150,28 @@
 //ユーザー登録
 // ユーザー登録が完了したら、必ずスコアも登録する仕様
 -(void) registerUserWithScreenname:(NSString *)screenname {
-    
-    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
+
+    NSURL *url = [NSURL URLWithString:SCORE_SERVER_BASE_URL];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            screenname, @"screenName",
+                            screenname, SCORE_SERVER_KEY_SCREENNAME,
+                            [[NSLocale preferredLanguages] objectAtIndex:0],SCORE_SERVER_KEY_LANG,
                             nil];
+    
+    for (id key in params) {
+        NSLog(@"key: %@, value: %@ \n", key, [params objectForKey:key]);
+    }
+    
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/user/register" parameters:params];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:SCORE_SERVER_USER_REGISTER_PATH parameters:params];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"uid: %@", [JSON valueForKeyPath:@"uid"]);
-        [Configuration setUidString:[JSON valueForKeyPath:@"uid"]];
         
+        NSLog(@"取得したuid: %@", [JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_UID]);
+        [Configuration setUidString:[JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_UID]];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
         //スコア登録の呼び出し
-        [self postScore:[Configuration scoreString] uid:[JSON valueForKeyPath:@"uid"]gameId:@"game01"];
+        [self postScore:[Configuration scoreString] uid:[JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_UID]gameId:GAME_ID];
         
     } failure:nil];
     
@@ -178,24 +180,31 @@
     [operation start];
 }
 
-//Score登録 POST
+//スコア登録 POST
 -(void) postScore:(int)score uid:(NSString *)uid gameId:(NSString *)gameId{
-    
-    NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
+
+    NSURL *url = [NSURL URLWithString:SCORE_SERVER_BASE_URL];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [ NSString stringWithFormat : @"%d", score ], @"score",
-                            uid, @"uid",
-                            gameId, @"gameId",
+                            [ NSString stringWithFormat : @"%d", score ], SCORE_SERVER_KEY_SCORE,
+                            uid, SCORE_SERVER_JSON_KEY_UID,
+                            gameId, SCORE_SERVER_KEY_GAMEID,
                             nil];
+    
+    for (id key in params) {
+        NSLog(@"key: %@, value: %@ \n", key, [params objectForKey:key]);
+    }
+
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/score/register" parameters:params];
+    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:SCORE_SERVER_SCORE_REGISTER_PATH parameters:params];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"Rank: %@", [JSON valueForKeyPath:@"rank"]);
-        rankLabel.text = [ NSString stringWithFormat : @"ランク：%@", [JSON valueForKeyPath:@"rank"]];
-        [Configuration setRankString:[JSON valueForKeyPath:@"rank"]];
+        
+        NSLog(@"取得したRank: %@", [JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_RANK]);
+        rankLabel.text = [ NSString stringWithFormat : @"%@%@", NSLocalizedString(@"GameViewScoreLabel", nil),[JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_RANK]];
+        [Configuration setRankString:[JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_RANK]];
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        
     } failure:nil];
     
     //start
@@ -209,41 +218,41 @@
 - (void)showAlertView{
     // UIAlertViewの生成
     //   http://www.amuate.com/2012/04/07/alertviewandtextfield.html
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"名前を入力して下さい"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"GameViewUsernameAlertTitle", nil) 
                                                         message:@" "
                                                        delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"OK", nil];
+                                              cancelButtonTitle:NSLocalizedString(@"GameViewUsernameAlertCancel", nil)
+                                              otherButtonTitles:NSLocalizedString(@"GameViewUsernameAlertOk", nil), nil];
     // UITextFieldの生成
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 45, 260, 25)];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.textAlignment = UITextAlignmentLeft;
-    textField.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
-    textField.textColor = [UIColor grayColor];
-    textField.minimumFontSize = 8;
-    textField.adjustsFontSizeToFitWidth = YES;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.delegate = self;
-    textField.text = button.titleLabel.text;
-    [alertView addSubview:textField];
+    alertViewTextfield = [[UITextField alloc] initWithFrame:CGRectMake(12, 45, 260, 25)];
+    alertViewTextfield.borderStyle = UITextBorderStyleRoundedRect;
+    alertViewTextfield.textAlignment = UITextAlignmentLeft;
+    alertViewTextfield.font = [UIFont fontWithName:@"Arial-BoldMT" size:18];
+    alertViewTextfield.textColor = [UIColor grayColor];
+    alertViewTextfield.minimumFontSize = 8;
+    alertViewTextfield.adjustsFontSizeToFitWidth = YES;
+    alertViewTextfield.clearButtonMode = UITextFieldViewModeWhileEditing;
+    alertViewTextfield.delegate = self;
+    alertViewTextfield.text = alertviewButton.titleLabel.text;
+    [alertView addSubview:alertViewTextfield];
     // アラート表示
     [alertView show];
     // テキストフィールドをファーストレスポンダに
-    [textField becomeFirstResponder];
+    [alertViewTextfield becomeFirstResponder];
 }
 
 //AlertViewのテキスト入力内容を受け取る
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // OKが選択された場合
     if (buttonIndex == 1) {
-        // テキストフィールドに一文字以上入力されていれば
-        if ([textField.text length]) {
+        // テキストフィールドに一文字以上入力されていた場合
+        if ([alertViewTextfield.text length]) {
             // ボタンタイトルにテキストフィールドのテキストを設定
-            NSLog(@"AlertView入力内容 %@",textField.text);
-            [Configuration setUsernameString: textField.text];
+            NSLog(@"AlertView入力内容 %@",alertViewTextfield.text);
+            [Configuration setUsernameString: alertViewTextfield.text];
 
             //ユーザー登録
-            [self registerUserWithScreenname:textField.text];
+            [self registerUserWithScreenname:alertViewTextfield.text];
             
         }else{
             //空のままOKボタン押されたら、再度ダイアログ表示

@@ -12,8 +12,8 @@
     UILabel *scoreLabel;
     UILabel *rankLabel;
     
-     UIButton *button;
-    UITextField *textField;
+    UIButton *alertviewButton;
+    UITextField *alertViewTextfield;
 }
 @property (nonatomic, retain) UILabel *scoreLabel;
 @property (nonatomic, retain) UILabel *rankLabel;

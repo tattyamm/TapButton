@@ -13,4 +13,9 @@
 "GameViewGoRankingButton" = "世界ランキング";
 "GameViewPostScoreButton" = "スコア登録";
 "GameViewCountButton" = "Push!!";
+"GameViewScoreLabel" = "スコア：";
+"GameViewRankLabel" = "順位：";
+"GameViewUsernameAlertTitle" = "名前を入力して下さい";
+"GameViewUsernameAlertCancel" = "取り消し";
+"GameViewUsernameAlertOk" = "決定";
 

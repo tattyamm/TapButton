@@ -13,3 +13,8 @@
 "GameViewGoRankingButton" = "World Rankings";
 "GameViewPostScoreButton" = "Post Score";
 "GameViewCountButton" = "Push!!";
+"GameViewScoreLabel" = "Score : ";
+"GameViewRankLabel" = "Rank : ";
+"GameViewUsernameAlertTitle" = "Input your name";
+"GameViewUsernameAlertCancel" = "Cancel";
+"GameViewUsernameAlertOk" = "Ok";

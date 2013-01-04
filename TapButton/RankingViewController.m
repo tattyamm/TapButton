@@ -45,7 +45,7 @@
     wv.scalesPageToFit = NO;
     [self.view addSubview:wv];
     
-    NSURL *url = [NSURL URLWithString:RANKING_TOP_URL];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", SCORE_SERVER_BASE_URL, SCORE_SERVER_RANKING_PATH]];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [wv loadRequest:req];
 
