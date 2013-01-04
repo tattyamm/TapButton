@@ -144,16 +144,16 @@
         [self showAlertView];
     }else{
         //ユーザー登録済みなので、スコア送信
+        NSLog(@"userName:%@ uid:%@",[Configuration usernameString],[Configuration uidString]);
         NSLog(@"スコア送信");
-        [self postScore:[Configuration scoreString] uid:@"e0365d12-3782-4c95-92bd-e2ad6b61e520" gameId:@"game01"];
+        [self postScore:[Configuration scoreString] uid:[Configuration uidString] gameId:@"game01"];
     }
 
 }
 
 //ユーザー登録
+// ユーザー登録が完了したら、必ずスコアも登録する仕様
 -(void) registerUserWithScreenname:(NSString *)screenname {
-    //TODO ユーザー登録が完了したら、必ずスコアも登録する仕様にしちゃう。
-    
     
     NSURL *url = [NSURL URLWithString:@"http://scoreserver.herokuapp.com"];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -166,11 +166,15 @@
         NSLog(@"uid: %@", [JSON valueForKeyPath:@"uid"]);
         [Configuration setUidString:[JSON valueForKeyPath:@"uid"]];
         
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        
         //スコア登録の呼び出し
         [self postScore:[Configuration scoreString] uid:[JSON valueForKeyPath:@"uid"]gameId:@"game01"];
         
     } failure:nil];
     
+    //start
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [operation start];
 }
 
@@ -190,8 +194,12 @@
         NSLog(@"Rank: %@", [JSON valueForKeyPath:@"rank"]);
         rankLabel.text = [ NSString stringWithFormat : @"ランク：%@", [JSON valueForKeyPath:@"rank"]];
         [Configuration setRankString:[JSON valueForKeyPath:@"rank"]];
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     } failure:nil];
     
+    //start
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [operation start];
 }
 
