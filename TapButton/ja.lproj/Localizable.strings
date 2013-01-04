@@ -18,4 +18,5 @@
 "GameViewUsernameAlertTitle" = "名前を入力して下さい";
 "GameViewUsernameAlertCancel" = "取り消し";
 "GameViewUsernameAlertOk" = "決定";
-
+"GameViewErrorAlertTitle" = "通信エラー";
+"GameViewErrorAlertMessage" = "時間を置いて再度お試し下さい";

@@ -108,15 +108,9 @@
     NSLog(@"Pushed countButtonDidPushed.");
     
     //値を読み出し、+1して、値を戻し、表示を更新
-    //これ、文字列を保存しちゃっているので、数字を保存するように変更する
-    //http://iphone-dev.g.hatena.ne.jp/tokorom/20090520/1242789479
     
-    //Debug 値の取り出し
-    //NSLog( @"%d", [Configuration scoreString] );
     //入力文字の保存
     [Configuration setScoreString: [Configuration scoreString]+1];
-    //Debug もう１回値を取り出す
-    //NSLog( @"%d", [Configuration scoreString] );
     
     //Labelの更新
     scoreLabel.text = [ NSString stringWithFormat : @"%@%d",NSLocalizedString(@"GameViewScoreLabel", nil), [Configuration scoreString]];
@@ -137,7 +131,7 @@
     //名前が空なら登録を促す
     if([Configuration usernameString] == @""){
         NSLog(@"初回ユーザー登録");
-        [self showAlertView];
+        [self inputUsernameAlertview];
     }else{
         //ユーザー登録済みなので、スコア送信
         NSLog(@"userName:%@ uid:%@",[Configuration usernameString],[Configuration uidString]);
@@ -173,7 +167,11 @@
         //スコア登録の呼び出し
         [self postScore:[Configuration scoreString] uid:[JSON valueForKeyPath:SCORE_SERVER_JSON_KEY_UID]gameId:GAME_ID];
         
-    } failure:nil];
+    } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+        NSLog(@"Failed: %@",[error localizedDescription]);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self showAlert:NSLocalizedString(@"GameViewErrorAlertTitle", nil) message:NSLocalizedString(@"GameViewErrorAlertMessage", nil)];
+    }];
     
     //start
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -205,7 +203,11 @@
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
-    } failure:nil];
+    } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+        NSLog(@"Failed: %@",[error localizedDescription]);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self showAlert:NSLocalizedString(@"GameViewErrorAlertTitle", nil) message:NSLocalizedString(@"GameViewErrorAlertMessage", nil)];
+    }];
     
     //start
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -214,8 +216,8 @@
 
 
 
-//AlertView表示
-- (void)showAlertView{
+//名前入力欄付きAlertView表示
+- (void)inputUsernameAlertview{
     // UIAlertViewの生成
     //   http://www.amuate.com/2012/04/07/alertviewandtextfield.html
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"GameViewUsernameAlertTitle", nil) 
@@ -256,10 +258,24 @@
             
         }else{
             //空のままOKボタン押されたら、再度ダイアログ表示
-            [self showAlertView];
+            [self inputUsernameAlertview];
         }
     }
 }
+
+//シンプルなアラート
+-(void) showAlert:(NSString *)title message:(NSString *)message{
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:title
+                              message:message
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+
+
 
 //画面遷移
 - (void)goRankingButtonDidPushed {

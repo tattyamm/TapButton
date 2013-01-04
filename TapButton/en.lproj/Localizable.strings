@@ -18,3 +18,5 @@
 "GameViewUsernameAlertTitle" = "Input your name";
 "GameViewUsernameAlertCancel" = "Cancel";
 "GameViewUsernameAlertOk" = "Ok";
+"GameViewErrorAlertTitle" = "Network Error";
+"GameViewErrorAlertMessage" = "Please retry later.";
